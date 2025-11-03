@@ -7,7 +7,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import {
 	Sheet,
-	SheetClose,
 	SheetContent,
 	SheetDescription,
 	SheetHeader,
@@ -19,7 +18,7 @@ import { LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 import { Button } from "../ui/button";
-import { MenuIcon, X } from "lucide-react";
+import { MenuIcon } from "lucide-react";
 
 const NavBar = () => {
 	const Links = [
@@ -65,7 +64,7 @@ const NavBar = () => {
 		},
 	];
 
-	const { isAuthenticated } = useKindeBrowserClient();
+	const { isAuthenticated, isLoading } = useKindeBrowserClient();
 
 	return (
 		<section className="max-w-7xl mx-auto">
@@ -91,14 +90,23 @@ const NavBar = () => {
 					<Link href={"/"}>
 						<ShoppingBag className="navLink mx-5" name="Shopping Bag" />
 					</Link>
-					{isAuthenticated ? (
-						<LogoutLink>
-							<CiLogout className="navLink leading-0 text-xl" />
-						</LogoutLink>
+					{isLoading ? (
+						<div>Loading</div>
 					) : (
-						<LoginLink>
-							<CiLogin className="navLink leading-0 text-xl" />
-						</LoginLink>
+						<div>
+							{isAuthenticated ? (
+								<LogoutLink
+									postLogoutRedirectURL={
+										process.env.NEXT_PUBLIC_KINDE_SITE_URL || "/"
+									}>
+									<CiLogout className="navLink leading-0 text-xl" />
+								</LogoutLink>
+							) : (
+								<LoginLink postLoginRedirectURL="/api/users/">
+									<CiLogin className="navLink leading-0 text-xl" />
+								</LoginLink>
+							)}
+						</div>
 					)}
 
 					<Sheet defaultOpen={false}>
