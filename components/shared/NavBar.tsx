@@ -1,7 +1,7 @@
 "use client";
 
 import { BsBag as ShoppingBag } from "react-icons/bs";
-import { CiLogin } from "react-icons/ci";
+import { CiLogin, CiLogout } from "react-icons/ci";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -14,7 +14,9 @@ import {
 	SheetTrigger,
 } from "@/components/ui/sheet";
 
-import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+
 import { Button } from "../ui/button";
 import { MenuIcon } from "lucide-react";
 
@@ -62,6 +64,8 @@ const NavBar = () => {
 		},
 	];
 
+	const { isAuthenticated } = useKindeBrowserClient();
+
 	return (
 		<section className="max-w-7xl mx-auto">
 			<div className="flex space-x-4 items-center justify-between bg-[#161617cc] min-[1194px]:justify-center h-11 left-[50%] -translate-[50%] fixed w-full top-5.5">
@@ -86,9 +90,16 @@ const NavBar = () => {
 					<Link href={"/"}>
 						<ShoppingBag className="navLink mx-5" />
 					</Link>
-					<LoginLink>
-						<CiLogin className="navLink leading-0 text-xl" />
-					</LoginLink>
+					{isAuthenticated ? (
+						<LogoutLink>
+							<CiLogout className="navLink leading-0 text-xl" />
+						</LogoutLink>
+					) : (
+						<LoginLink postLoginRedirectURL="/api/users">
+							<CiLogin className="navLink leading-0 text-xl" />
+						</LoginLink>
+					)}
+
 					<Sheet defaultOpen={false}>
 						<SheetTrigger asChild>
 							<Button variant={"link"} className="navLink min-[1194px]:hidden">
