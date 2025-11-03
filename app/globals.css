@@ -165,7 +165,7 @@
 	}
 
 	.heroBannerBg {
-		@apply bg-[url('/assets/banner/hero-banner.jpg')] bg-cover px-60 bg-center bg-no-repeat;
+		@apply min-[600px]:bg-[url('/assets/banner/hero-banner.webp')] min-[600px]:bg-cover bg-contain object-center bottom-0 absolute px-60 bg-center bg-no-repeat;
 	}
 
 	.absoluteCenter {

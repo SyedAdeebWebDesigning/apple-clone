@@ -7,6 +7,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import {
 	Sheet,
+	SheetClose,
 	SheetContent,
 	SheetDescription,
 	SheetHeader,
@@ -18,7 +19,7 @@ import { LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 import { Button } from "../ui/button";
-import { MenuIcon } from "lucide-react";
+import { MenuIcon, X } from "lucide-react";
 
 const NavBar = () => {
 	const Links = [
@@ -74,7 +75,7 @@ const NavBar = () => {
 					alt="Logo"
 					width={30}
 					height={44}
-					className="p-2"
+					className="p-2 ml-2"
 				/>
 				<ul className="hidden min-[1194px]:flex  items-center">
 					{Links.map((link: { name: string; url: string }) => (
@@ -86,9 +87,9 @@ const NavBar = () => {
 					))}
 				</ul>
 
-				<div className="flex items-center">
+				<div className="flex items-center mr-2">
 					<Link href={"/"}>
-						<ShoppingBag className="navLink mx-5" />
+						<ShoppingBag className="navLink mx-5" name="Shopping Bag" />
 					</Link>
 					{isAuthenticated ? (
 						<LogoutLink>
@@ -109,7 +110,7 @@ const NavBar = () => {
 
 						<SheetContent
 							onCloseAutoFocus={(e) => e.preventDefault()}
-							className="z-200 h-screen bg-[#161617] text-white"
+							className="z-200 [&_button[data-radix-collection-item]]:hidden h-screen bg-[#161617] text-white border-none *:outline-none focus:outline-none focus:ring-0 active:outline-none active:ring-0"
 							side="top">
 							{/* Accessible title (visually hidden) */}
 							<SheetHeader>
