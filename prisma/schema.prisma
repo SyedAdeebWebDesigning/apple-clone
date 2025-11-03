@@ -15,15 +15,21 @@ datasource db {
 }
 
 model User {
-  id          String   @id @default(cuid())
-  kindeId     String   @unique
-  email       String?  @unique
-  name        String?
-  givenName   String?
-  familyName  String?
-  phoneNumber String?
-  picture     String?
-  properties  Json? // store raw Kinde properties / extra fields
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id         String   @id @default(cuid())
+  kindeId    String   @unique
+  email      String?  @unique
+  name       String?
+  givenName  String?
+  familyName String?
+  picture    String?
+  properties Json? // store raw Kinde properties / extra fields
+  role       Role     @default(USER)
+  userPhone  String?  @unique
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+enum Role {
+  USER
+  ADMIN
 }

@@ -29,15 +29,17 @@ async function syncUser() {
 			update: {
 				email: kindeUser.email ?? undefined,
 				name: fullName ?? undefined,
+				givenName: kindeUser.given_name ?? undefined,
+				familyName: kindeUser.family_name ?? undefined,
 			},
 			create: {
 				kindeId: kindeUser.id,
 				email: kindeUser.email ?? "",
 				name: fullName,
+				givenName: kindeUser.given_name ?? null,
+				familyName: kindeUser.family_name ?? null,
 			},
 		});
-
-		console.log(`✅ Synced user: ${kindeUser.email}`);
 
 		// Redirect to home page with proper absolute URL
 		const homeUrl = new URL(
