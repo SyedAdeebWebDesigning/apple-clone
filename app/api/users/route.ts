@@ -12,7 +12,7 @@ async function syncUser() {
 			// Use absolute URL for redirect
 			const loginUrl = new URL(
 				"/api/auth/login",
-				process.env.NEXT_PUBLIC_URL || "http://localhost:3000"
+				process.env.NEXT_PUBLIC_KINDE_SITE_URL
 			);
 			return NextResponse.redirect(loginUrl);
 		}
@@ -42,10 +42,7 @@ async function syncUser() {
 		});
 
 		// Redirect to home page with proper absolute URL
-		const homeUrl = new URL(
-			"/",
-			process.env.NEXT_PUBLIC_URL || "http://localhost:3000"
-		);
+		const homeUrl = new URL("/", process.env.NEXT_PUBLIC_KINDE_SITE_URL);
 		return NextResponse.redirect(homeUrl);
 	} catch (error) {
 		console.error("❌ Failed to sync user:", error);

@@ -96,7 +96,7 @@ const NavBar = () => {
 							<CiLogout className="navLink leading-0 text-xl" />
 						</LogoutLink>
 					) : (
-						<LoginLink postLoginRedirectURL="/api/users">
+						<LoginLink>
 							<CiLogin className="navLink leading-0 text-xl" />
 						</LoginLink>
 					)}
