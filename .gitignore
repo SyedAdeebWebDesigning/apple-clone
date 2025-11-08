@@ -41,3 +41,9 @@ yarn-error.log*
 next-env.d.ts
 
 /lib/generated/prisma
+
+
+# build logs 
+# ! DO NOT REMOVE 
+/build-out
+/build-out/*

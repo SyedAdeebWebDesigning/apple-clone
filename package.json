@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
-		"build": "prisma generate && next build",
+		"build": "mkdir -p build && prisma generate && if [ \"$NODE_ENV\" != \"production\" ]; then next build | tee build-out/out.txt; else next build; fi",
 		"start": "next start",
 		"lint": "eslint"
 	},
@@ -12,6 +12,8 @@
 		"@kinde-oss/kinde-auth-nextjs": "^2.10.0",
 		"@prisma/client": "^6.18.0",
 		"@radix-ui/react-dialog": "^1.1.15",
+		"@radix-ui/react-dropdown-menu": "^2.1.16",
+		"@radix-ui/react-separator": "^1.1.8",
 		"@radix-ui/react-slot": "^1.2.3",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
