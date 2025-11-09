@@ -141,7 +141,7 @@
 		@apply border-border outline-ring/50;
 	}
 	body {
-		@apply bg-background text-foreground;
+		@apply bg-white text-foreground;
 	}
 
 	.navLink {
@@ -166,6 +166,9 @@
 
 	.heroBannerBg {
 		@apply min-[600px]:bg-[url('/assets/banner/hero-banner.webp')] min-[600px]:bg-cover bg-contain object-center bottom-0 absolute px-60 bg-center bg-no-repeat;
+	}
+	.airBannerBg {
+		@apply min-[1172px]:bg-[url('/assets/banner/air-banner-1.webp')] min-[1172px]:bg-cover bg-contain object-center bottom-0 absolute px-60 bg-center bg-no-repeat;
 	}
 
 	.absoluteCenter {

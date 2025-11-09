@@ -57,7 +57,7 @@ const NavBar = async () => {
 
 	return (
 		<section className="max-w-7xl mx-auto">
-			<div className="flex space-x-4 items-center justify-between bg-[#161617cc] min-[1194px]:justify-center h-11 left-[50%] -translate-[50%] fixed w-full top-5.5">
+			<div className="flex space-x-4 items-center justify-between bg-[#161617cc] backdrop-blur-xs min-[1194px]:justify-center h-11 left-[50%] -translate-[50%] fixed w-full top-5.5">
 				<Image
 					src="/assets/AppleWhite.svg"
 					alt="Logo"

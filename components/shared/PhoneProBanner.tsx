@@ -20,7 +20,7 @@ const PhoneProBanner = () => {
 				/>
 			</div>
 			<div className="absolute top-30 w-full ">
-				<h1 className="text-white min-[600px]:text-7xl text-4xl min-[600px]:mt-0 mt-20 font-semibold">
+				<h1 className="text-white min-[600px]:text-5xl text-4xl min-[600px]:mt-0 mt-20 font-semibold">
 					iPhone 17 Pro
 				</h1>
 				<h4 className="text-white text-2xl min-[600px]:text-4xl mt-2">
@@ -36,7 +36,7 @@ const PhoneProBanner = () => {
 						Learn More
 					</Link>
 					<Link
-						href={"/iphone/17-pro"}
+						href={"/store/17-pro"}
 						className={cn(
 							"rounded-full! border-primary! border-2! bg-transparent! hover:bg-primary! text-primary! hover:text-white! font-semibold!",
 							buttonVariants({ variant: "default", size: "lg" })
