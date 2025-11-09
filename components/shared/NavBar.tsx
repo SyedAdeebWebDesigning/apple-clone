@@ -63,7 +63,7 @@ const NavBar = async ({ theme }: { theme: "light" | "dark" }) => {
 						? "bg-[#161617cc] text-white"
 						: "bg-white text-neutral-800"
 				)}>
-				<Link href={"/"} className="flex items-center py-1">
+				<Link href={"/"} className="flex items-center py-1 ml-2">
 					<BsApple
 						className={cn(
 							"size-4.5",
