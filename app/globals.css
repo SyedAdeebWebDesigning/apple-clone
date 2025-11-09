@@ -145,7 +145,7 @@
 	}
 
 	.navLink {
-		@apply text-neutral-300 hover:text-white transition-all saturate-200 ease-in-out;
+		@apply transition-all saturate-200 ease-in-out;
 	}
 
 	h1 {
@@ -170,8 +170,38 @@
 	.airBannerBg {
 		@apply min-[1172px]:bg-[url('/assets/banner/air-banner-1.webp')] min-[1172px]:bg-cover bg-contain object-center bottom-0 absolute px-60 bg-center bg-no-repeat;
 	}
+	.iPadAirBannerBg {
+		@apply min-[1172px]:bg-[url('/assets/banner/ipad-air-banner-1.webp')] bg-[url('/assets/banner/ipad-air-banner-2.webp')] bg-cover w-full h-full object-center bottom-0 absolute px-60 bg-center bg-no-repeat;
+	}
+	.macBannerBg {
+		@apply bg-[url('/assets/banner/mac-pro-banner.webp')] bg-cover bottom-0 absolute bg-center bg-no-repeat;
+	}
+
+	.AirPodsProBannerBg {
+		@apply min-[1172px]:bg-[url('/assets/banner/airpods-pro-banner.webp')] bg-cover bottom-0 absolute bg-center bg-no-repeat;
+	}
+
+	.watchSeriesBg {
+		@apply min-[1172px]:bg-[url('/assets/banner/watch-series-11-banner.webp')] bg-cover bottom-0 absolute bg-center bg-no-repeat;
+	}
 
 	.absoluteCenter {
 		@apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+	}
+
+	.continuityBannerBg {
+		@apply bg-[url('/assets/banner/continuity-banner.webp')] bg-cover bottom-0 absolute bg-center bg-no-repeat;
+	}
+
+	.macAirBannerBg {
+		@apply bg-[url('/assets/banner/mac-air-banner.webp')] bg-cover bottom-0 absolute bg-center bg-no-repeat;
+	}
+
+	.iPadProBannerBg {
+		@apply min-[1172px]:bg-[url('/assets/banner/ipad-pro-banner.webp')] bg-cover bottom-0 absolute bg-center bg-no-repeat;
+	}
+
+	.TradeInBannerBg {
+		@apply bg-[url('/assets/banner/trade-in-banner.webp')] bg-cover bottom-0 absolute bg-center bg-no-repeat;
 	}
 }

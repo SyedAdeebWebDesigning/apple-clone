@@ -1,12 +1,11 @@
-import { BsBag as ShoppingBag } from "react-icons/bs";
+import { BsApple, BsBag as ShoppingBag } from "react-icons/bs";
 import { CiLogin } from "react-icons/ci";
-import Image from "next/image";
 import Link from "next/link";
-
 import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import MobileNavLinks from "./MobileNavLinks";
 import User from "./User";
+import { cn } from "@/lib/utils";
 
 export const Links = [
 	{
@@ -51,24 +50,42 @@ export const Links = [
 	},
 ];
 
-const NavBar = async () => {
+const NavBar = async ({ theme }: { theme: "light" | "dark" }) => {
 	const { isAuthenticated } = getKindeServerSession();
-	const auth = await isAuthenticated(); // <-- CALL the function
+	const auth = await isAuthenticated();
 
 	return (
 		<section className="max-w-7xl mx-auto">
-			<div className="flex space-x-4 items-center justify-between bg-[#161617cc] backdrop-blur-xs min-[1194px]:justify-center h-11 left-[50%] -translate-[50%] fixed w-full top-5.5">
-				<Image
-					src="/assets/AppleWhite.svg"
-					alt="Logo"
-					width={30}
-					height={44}
-					className="p-2 ml-2"
-				/>
-				<ul className="hidden min-[1194px]:flex  items-center">
+			<div
+				className={cn(
+					"flex space-x-4 items-center justify-between backdrop-blur-xs min-[1194px]:justify-center h-11 left-[50%] -translate-[50%] fixed w-full top-5.5",
+					theme === "dark"
+						? "bg-[#161617cc] text-white"
+						: "bg-white text-neutral-800"
+				)}>
+				<Link href={"/"} className="flex items-center py-1">
+					<BsApple
+						className={cn(
+							"size-4.5",
+							theme === "dark" ? "text-white" : "text-black"
+						)}
+					/>
+				</Link>
+				<ul
+					className={cn(
+						"hidden min-[1194px]:flex  items-center",
+						theme === "dark" ? "text-neutral-300 " : "text-neutral-700 "
+					)}>
 					{Links.map((link: { name: string; url: string }) => (
 						<li key={link.name} className="inline-block">
-							<Link href={link.url} className="navLink mx-5 leading-0">
+							<Link
+								href={link.url}
+								className={cn(
+									"navLink mx-5 leading-0",
+									theme === "dark"
+										? "hover:text-neutral-100"
+										: "hover:text-neutral-900"
+								)}>
 								{link.name}
 							</Link>
 						</li>
@@ -90,7 +107,7 @@ const NavBar = async () => {
 						)}
 					</div>
 
-					<MobileNavLinks />
+					<MobileNavLinks theme={theme} />
 				</div>
 			</div>
 		</section>

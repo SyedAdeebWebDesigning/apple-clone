@@ -13,19 +13,30 @@ import {
 import { Button } from "../ui/button";
 import { MenuIcon } from "lucide-react";
 import { Links } from "./NavBar";
+import { cn } from "@/lib/utils";
 
-const MobileNavLinks = () => {
+const MobileNavLinks = ({ theme }: { theme: "light" | "dark" }) => {
 	return (
 		<Sheet defaultOpen={false}>
 			<SheetTrigger asChild>
-				<Button variant={"link"} className="navLink min-[1194px]:hidden">
+				<Button
+					variant={"link"}
+					className={cn(
+						"navLink min-[1194px]:hidden p-0",
+						theme === "dark" ? "text-white" : "text-black"
+					)}>
 					<MenuIcon className="navLink leading-0 text-xl" />
 				</Button>
 			</SheetTrigger>
 
 			<SheetContent
 				onCloseAutoFocus={(e) => e.preventDefault()}
-				className="z-200 [&_button[data-radix-collection-item]]:hidden h-screen bg-[#161617] text-white border-none *:outline-none focus:outline-none focus:ring-0 active:outline-none active:ring-0"
+				className={cn(
+					"z-200 [&_button[data-radix-collection-item]]:hidden h-screen text-white border-none *:outline-none focus:outline-none focus:ring-0 active:outline-none active:ring-0",
+					theme === "dark"
+						? "bg-[#161617] text-white"
+						: "bg-white text-neutral-800"
+				)}
 				side="top">
 				{/* Accessible title (visually hidden) */}
 				<SheetHeader>
