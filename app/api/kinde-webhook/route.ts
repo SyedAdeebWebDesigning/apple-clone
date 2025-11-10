@@ -2,7 +2,9 @@
 import { NextResponse } from "next/server";
 import jwksClient from "jwks-rsa";
 import jwt from "jsonwebtoken";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma"; // <- adjust if needed
+
+export const runtime = "nodejs"; // required for crypto modules
 
 const client = jwksClient({
 	jwksUri: `${process.env.KINDE_ISSUER_URL}/.well-known/jwks.json`,
@@ -10,68 +12,85 @@ const client = jwksClient({
 
 export async function POST(req: Request) {
 	try {
-		const token = await req.text();
+		console.log("✅ WEBHOOK RECEIVED");
 
+		// Kinde sends the webhook as a *raw JWT string*
+		const token = await req.text();
+		console.log("RAW TOKEN:", token?.slice(0, 50));
+
+		if (!token) {
+			console.log("❌ EMPTY TOKEN — middleware or wrong URL.");
+			return NextResponse.json({ error: "Empty token" }, { status: 400 });
+		}
+
+		// Decode header to get kid
 		const decoded = jwt.decode(token, { complete: true }) as any;
 		if (!decoded?.header?.kid) {
-			throw new Error("Invalid token header");
+			console.log("❌ NO KID — token invalid");
+			return NextResponse.json(
+				{ error: "Invalid token header" },
+				{ status: 400 }
+			);
 		}
 
 		const key = await client.getSigningKey(decoded.header.kid);
 		const signingKey = key.getPublicKey();
+
+		// Verify JWT
 		const event: any = jwt.verify(token, signingKey);
+		console.log("✅ VERIFIED EVENT:", event.type);
 
-		const data = event?.data;
+		const data = event.data;
 
-		switch (event?.type) {
-			// ✅ USER CREATED
+		switch (event.type) {
 			case "user.created":
+				console.log("🟢 USER CREATED:", data.id);
 				await prisma.user.upsert({
 					where: { kindeId: data.id },
-					update: {
-						email: data.email,
-						firstName: data.given_name,
-						lastName: data.family_name,
-						picture: data.picture,
-					},
 					create: {
 						kindeId: data.id,
 						email: data.email,
-						firstName: data.given_name,
-						lastName: data.family_name,
-						picture: data.picture,
+						firstName: data.given_name || null,
+						lastName: data.family_name || null,
+						picture: data.picture || null,
+					},
+					update: {
+						email: data.email,
+						firstName: data.given_name || null,
+						lastName: data.family_name || null,
+						picture: data.picture || null,
 					},
 				});
 				break;
 
-			// ✅ USER UPDATED
 			case "user.updated":
+				console.log("🟡 USER UPDATED:", data.id);
 				await prisma.user.updateMany({
 					where: { kindeId: data.id },
 					data: {
 						email: data.email,
-						firstName: data.given_name,
-						lastName: data.family_name,
-						picture: data.picture,
+						firstName: data.given_name || null,
+						lastName: data.family_name || null,
+						picture: data.picture || null,
 					},
 				});
 				break;
 
-			// ✅ USER DELETED
 			case "user.deleted":
+				console.log("🔴 USER DELETED:", data.id);
 				await prisma.user.deleteMany({
 					where: { kindeId: data.id },
 				});
 				break;
 
 			default:
-				console.log("Unhandled event:", event?.type);
+				console.log("⚪ UNHANDLED EVENT:", event.type);
 				break;
 		}
 
-		return NextResponse.json({ message: "ok" });
-	} catch (err) {
-		console.error("Webhook error:", err);
-		return NextResponse.json({ message: "Webhook failed" }, { status: 400 });
+		return NextResponse.json({ ok: true });
+	} catch (err: any) {
+		console.log("❌ WEBHOOK ERROR:", err.message);
+		return NextResponse.json({ error: err.message }, { status: 400 });
 	}
 }
