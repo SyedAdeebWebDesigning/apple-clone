@@ -2,7 +2,7 @@
 import { NextResponse } from "next/server";
 import jwksClient from "jwks-rsa";
 import jwt from "jsonwebtoken";
-import { prisma } from "@/lib/prisma"; // <- adjust if needed
+import { prisma } from "@/lib/prisma";
 
 const client = jwksClient({
 	jwksUri: `${process.env.KINDE_ISSUER_URL}/.well-known/jwks.json`,
@@ -12,77 +12,62 @@ export async function POST(req: Request) {
 	try {
 		console.log("✅ WEBHOOK RECEIVED");
 
-		// Kinde sends the webhook as a *raw JWT string*
 		const token = await req.text();
-		console.log("RAW TOKEN:", token?.slice(0, 50));
+		console.log("RAW TOKEN:", token?.slice(0, 40));
 
-		if (!token) {
-			console.log("❌ EMPTY TOKEN — middleware or wrong URL.");
-			return NextResponse.json({ error: "Empty token" }, { status: 400 });
-		}
-
-		// Decode header to get kid
 		const decoded = jwt.decode(token, { complete: true }) as any;
-		if (!decoded?.header?.kid) {
-			console.log("❌ NO KID — token invalid");
+		const key = await client.getSigningKey(decoded.header.kid);
+		const event: any = jwt.verify(token, key.getPublicKey());
+
+		console.log("FULL EVENT PAYLOAD:", JSON.stringify(event, null, 2));
+
+		// UNIVERSAL USER PARSER
+		const user = event.data?.user || event.user || event.data || null;
+
+		if (!user?.id) {
+			console.log("❌ INVALID USER PAYLOAD:", user);
 			return NextResponse.json(
-				{ error: "Invalid token header" },
+				{ error: "Invalid user payload" },
 				{ status: 400 }
 			);
 		}
 
-		const key = await client.getSigningKey(decoded.header.kid);
-		const signingKey = key.getPublicKey();
-
-		// Verify JWT
-		const event: any = jwt.verify(token, signingKey);
-		console.log("✅ VERIFIED EVENT:", event.type);
-
-		const data = event.data;
-
 		switch (event.type) {
 			case "user.created":
-				console.log("🟢 USER CREATED:", data.id);
 				await prisma.user.upsert({
-					where: { kindeId: data.id },
+					where: { kindeId: user.id },
 					create: {
-						kindeId: data.id,
-						email: data.email,
-						firstName: data.given_name || null,
-						lastName: data.family_name || null,
-						picture: data.picture || null,
+						kindeId: user.id,
+						email: user.email || null,
+						firstName: user.given_name || null,
+						lastName: user.family_name || null,
+						picture: user.picture || null,
 					},
 					update: {
-						email: data.email,
-						firstName: data.given_name || null,
-						lastName: data.family_name || null,
-						picture: data.picture || null,
+						email: user.email || null,
+						firstName: user.given_name || null,
+						lastName: user.family_name || null,
+						picture: user.picture || null,
 					},
 				});
 				break;
 
 			case "user.updated":
-				console.log("🟡 USER UPDATED:", data.id);
 				await prisma.user.updateMany({
-					where: { kindeId: data.id },
+					where: { kindeId: user.id },
 					data: {
-						email: data.email,
-						firstName: data.given_name || null,
-						lastName: data.family_name || null,
-						picture: data.picture || null,
+						email: user.email || null,
+						firstName: user.given_name || null,
+						lastName: user.family_name || null,
+						picture: user.picture || null,
 					},
 				});
 				break;
 
 			case "user.deleted":
-				console.log("🔴 USER DELETED:", data.id);
 				await prisma.user.deleteMany({
-					where: { kindeId: data.id },
+					where: { kindeId: user.id },
 				});
-				break;
-
-			default:
-				console.log("⚪ UNHANDLED EVENT:", event.type);
 				break;
 		}
 
