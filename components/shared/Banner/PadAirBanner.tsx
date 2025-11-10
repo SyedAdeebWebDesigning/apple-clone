@@ -20,7 +20,7 @@ const PadAirBanner = () => {
 				</h4>
 				<div className="flex mt-5 justify-center gap-4">
 					<Link
-						href={"/iphone/air"}
+						href={"/ipad/ipad-air"}
 						className={cn(
 							"rounded-full!",
 							buttonVariants({ variant: "default", size: "lg" })
@@ -28,7 +28,7 @@ const PadAirBanner = () => {
 						Learn More
 					</Link>
 					<Link
-						href={"/store/air"}
+						href={"/store/ipad-air"}
 						className={cn(
 							"rounded-full! border-primary! border-2! bg-transparent! hover:bg-primary! text-primary! hover:text-white! font-semibold!",
 							buttonVariants({ variant: "default", size: "lg" })

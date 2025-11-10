@@ -29,7 +29,7 @@ const PhoneAirBanner = () => {
 				</h4>
 				<div className="flex mt-5 justify-center gap-4">
 					<Link
-						href={"/iphone/air"}
+						href={"/iphone/iphone-air"}
 						className={cn(
 							"rounded-full!",
 							buttonVariants({ variant: "default", size: "lg" })
@@ -37,7 +37,7 @@ const PhoneAirBanner = () => {
 						Learn More
 					</Link>
 					<Link
-						href={"/store/air"}
+						href={"/store/iphone-air"}
 						className={cn(
 							"rounded-full! border-primary! border-2! bg-transparent! hover:bg-primary! text-primary! hover:text-white! font-semibold!",
 							buttonVariants({ variant: "default", size: "lg" })
