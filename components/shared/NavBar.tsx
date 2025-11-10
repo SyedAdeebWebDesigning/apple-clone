@@ -6,49 +6,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import MobileNavLinks from "./MobileNavLinks";
 import User from "./User";
 import { cn } from "@/lib/utils";
-
-export const Links = [
-	{
-		name: "Store",
-		url: "/store",
-	},
-	{
-		name: "Mac",
-		url: "/mac",
-	},
-	{
-		name: "iPad",
-		url: "/ipad",
-	},
-	{
-		name: "iPhone",
-		url: "/iphone",
-	},
-	{
-		name: "Watch",
-		url: "/watch",
-	},
-	{
-		name: "AirPods",
-		url: "/airpods",
-	},
-	{
-		name: "TV & Home",
-		url: "/tv-home",
-	},
-	{
-		name: "Entertainment",
-		url: "/entertainment",
-	},
-	{
-		name: "Accessories",
-		url: "/accessories",
-	},
-	{
-		name: "Support",
-		url: "/support",
-	},
-];
+import { NavLinks } from "@/lib/links";
 
 const NavBar = async ({ theme }: { theme: "light" | "dark" }) => {
 	const { isAuthenticated } = getKindeServerSession();
@@ -76,7 +34,7 @@ const NavBar = async ({ theme }: { theme: "light" | "dark" }) => {
 						"hidden min-[1194px]:flex  items-center",
 						theme === "dark" ? "text-neutral-300 " : "text-neutral-700 "
 					)}>
-					{Links.map((link: { name: string; url: string }) => (
+					{NavLinks.map((link: { name: string; url: string }) => (
 						<li key={link.name} className="inline-block">
 							<Link
 								href={link.url}

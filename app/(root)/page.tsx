@@ -1,5 +1,4 @@
 import AirPodsProBanner from "@/components/shared/Banner/AirPodsProBanner";
-import ContinuityBanner from "@/components/shared/Banner/ContinuityBanner";
 import MacAirBanner from "@/components/shared/Banner/MacAirBanner";
 import MacProBanner from "@/components/shared/Banner/MacProBanner";
 import PadAirBanner from "@/components/shared/Banner/PadAirBanner";
@@ -12,7 +11,7 @@ import NavBar from "@/components/shared/NavBar";
 
 export default function Home() {
 	return (
-		<main>
+		<>
 			<header className="bg-[#161617cc] relative z-10">
 				<NavBar theme="dark" />
 			</header>
@@ -36,6 +35,6 @@ export default function Home() {
 					<TradeInBanner />
 				</div>
 			</section>
-		</main>
+		</>
 	);
 }

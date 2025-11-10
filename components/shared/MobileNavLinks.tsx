@@ -12,8 +12,8 @@ import {
 } from "../ui/sheet";
 import { Button } from "../ui/button";
 import { MenuIcon } from "lucide-react";
-import { Links } from "./NavBar";
 import { cn } from "@/lib/utils";
+import { NavLinks } from "@/lib/links";
 
 const MobileNavLinks = ({ theme }: { theme: "light" | "dark" }) => {
 	return (
@@ -46,7 +46,7 @@ const MobileNavLinks = ({ theme }: { theme: "light" | "dark" }) => {
 					</SheetDescription>
 				</SheetHeader>
 				<ul className="flex flex-col items-start justify-start space-y-3 m-8">
-					{Links.map((link: { name: string; url: string }, idx: number) => (
+					{NavLinks.map((link: { name: string; url: string }, idx: number) => (
 						<motion.li
 							key={link.name}
 							className="inline-block"
