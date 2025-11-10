@@ -4,6 +4,10 @@ const nextConfig: NextConfig = {
 	experimental: {
 		cacheComponents: true,
 	},
+
+	images: {
+		domains: ["lh3.googleusercontent.com"],
+	},
 	/* config options here */
 };
 

@@ -14,18 +14,16 @@ datasource db {
 }
 
 model User {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  kindeId    String   @unique
-  email      String?  @unique
-  name       String?
-  givenName  String?
-  familyName String?
-  picture    String?
-  properties Json? // store raw Kinde properties / extra fields
-  role       Role     @default(USER)
-  userPhone  String?  @unique
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  kindeId   String    @unique
+  email     String?   @unique
+  firstName String?
+  lastName  String?
+  picture   String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  role      Role      @default(USER)
 }
 
 enum Role {

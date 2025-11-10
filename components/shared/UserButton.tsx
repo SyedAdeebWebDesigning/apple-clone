@@ -35,11 +35,18 @@ const UserButton = ({ user }: { user: User | null }) => {
 			<DropdownMenuTrigger asChild>
 				<Button className="size-8 rounded-full p-0 overflow-hidden bg-neutral-700 group hover:bg-neutral-800 cursor-pointer flex items-center justify-center relative">
 					{user?.picture ? (
-						<Image width={30} height={30} alt="User" src={user.picture} />
+						<Image
+							width={40}
+							height={40}
+							alt="User"
+							className="object-cover"
+							src={user.picture}
+							objectFit="cover"
+						/>
 					) : (
 						<span className="text-sm uppercase">
-							{user?.givenName ? user.givenName.charAt(0) : "U"}
-							{user?.familyName ? user.familyName.charAt(0) : "N"}
+							{user?.firstName ? user.firstName.charAt(0) : "U"}
+							{user?.lastName ? user.lastName.charAt(0) : "N"}
 						</span>
 					)}
 					<div className="absolute w-0.5 h-full -left-10 bg-white/50 transition-all duration-500 group-hover:left-10 rotate-45" />
@@ -49,7 +56,9 @@ const UserButton = ({ user }: { user: User | null }) => {
 				align="center"
 				className="mt-2 bg-neutral-900 border-neutral-800 mx-10">
 				<DropdownMenuLabel className="text-white">
-					<p className="text-base font-medium">Welcome {user?.name}</p>
+					<p className="text-base font-medium">
+						Welcome {user?.firstName} {user?.lastName}
+					</p>
 					<span className="text-xs font-light">{user?.email}</span>
 				</DropdownMenuLabel>
 				<Separator className="my-1 bg-neutral-800" />
