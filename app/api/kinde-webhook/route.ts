@@ -4,8 +4,6 @@ import jwksClient from "jwks-rsa";
 import jwt from "jsonwebtoken";
 import { prisma } from "@/lib/prisma"; // <- adjust if needed
 
-export const runtime = "nodejs"; // required for crypto modules
-
 const client = jwksClient({
 	jwksUri: `${process.env.KINDE_ISSUER_URL}/.well-known/jwks.json`,
 });
