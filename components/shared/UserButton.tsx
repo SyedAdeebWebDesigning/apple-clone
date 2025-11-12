@@ -75,16 +75,14 @@ const UserButton = ({ user }: { user: User | null }) => {
 				))}
 				<Separator className="my-1 bg-neutral-800" />
 
-				<DropdownMenuItem className="cursor-pointer">
-					<CiLogout className="text-red-500" />
-					<LogoutLink
-						className="text-red-500"
-						postLogoutRedirectURL={
-							process.env.NEXT_PUBLIC_KINDE_SITE_URL || "/"
-						}>
+				<LogoutLink
+					className="text-red-500"
+					postLogoutRedirectURL={process.env.NEXT_PUBLIC_KINDE_SITE_URL || "/"}>
+					<DropdownMenuItem className="cursor-pointer">
+						<CiLogout className="text-red-500" />
 						Logout
-					</LogoutLink>
-				</DropdownMenuItem>
+					</DropdownMenuItem>
+				</LogoutLink>
 			</DropdownMenuContent>
 		</DropdownMenu>
 	);
