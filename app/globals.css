@@ -204,4 +204,15 @@
 	.TradeInBannerBg {
 		@apply bg-[url('/assets/banner/trade-in-banner.webp')] bg-cover bottom-0 absolute bg-center bg-no-repeat;
 	}
+
+	html,
+	body {
+		scrollbar-width: none; /* Firefox */
+		-ms-overflow-style: none; /* Internet Explorer and Edge */
+	}
+
+	html::-webkit-scrollbar,
+	body::-webkit-scrollbar {
+		display: none; /* Chrome, Safari, and Opera */
+	}
 }

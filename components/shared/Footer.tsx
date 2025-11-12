@@ -15,7 +15,7 @@ const Footer = () => {
 			<div className="max-w-5xl mx-auto">
 				<FooterText />
 				<Separator className="my-10 bg-neutral-400" />
-				<div className="grid grid-col-1 sm:grid-cols-2 md:grid-cols-5 place-content-center gap-8">
+				<div className="grid grid-cols-2 md:grid-cols-5 place-items-center md:place-items-start place-content-center gap-8">
 					<div className="md:mr-auto">
 						<h5 className="text-sm font-semibold">Shop and learn</h5>
 						<nav>
@@ -103,27 +103,6 @@ const Footer = () => {
 					<p className="text-xs font-extralight">
 						&copy; 2025 Apple Inc. All rights reserved.
 					</p>
-					<div>
-						<ul className="flex gap-4">
-							<Link href="/privacy-policy">
-								<li className="text-xs font-extralight hover:underline cursor-pointer">
-									Privacy Policy
-								</li>
-							</Link>
-
-							<Link href="/terms-of-use">
-								<li className="text-xs font-extralight hover:underline cursor-pointer">
-									Terms of Use
-								</li>
-							</Link>
-
-							<Link href="/sales-refunds">
-								<li className="text-xs font-extralight hover:underline cursor-pointer">
-									Sales and Refunds
-								</li>
-							</Link>
-						</ul>
-					</div>
 					<p className="text-xs font-extralight mt-2 sm:mt-0">India</p>
 				</div>
 			</div>

@@ -10,7 +10,7 @@ const MacAirBanner = () => {
 				<h1 className="text-neutral-800  text-4xl mt-2 sm:mt-10 font-semibold">
 					MacBook Air
 				</h1>
-				<h4 className="text-neutral-800 text-xl mt-2">
+				<h4 className="text-neutral-800 sm:text-sm md:text-xl mt-2 max-w-[350px] mx-auto px-2">
 					Sky blue color. <br /> Sky high performance with M4.
 				</h4>
 				<div className="flex mt-5 justify-center gap-4">

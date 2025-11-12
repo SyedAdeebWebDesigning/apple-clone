@@ -5,7 +5,8 @@ import { User as IUser } from "@prisma/client";
 
 const User = async () => {
 	const kindeId = await getKindeUserIdUncached();
-	const user: IUser | null = kindeId ? await getUserByKindeId(kindeId) : null; // cached by id
+
+	const user = (await getUserByKindeId(kindeId)) as IUser; // cached by id
 
 	return (
 		<div>

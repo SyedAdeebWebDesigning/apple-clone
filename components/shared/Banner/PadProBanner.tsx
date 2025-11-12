@@ -18,10 +18,10 @@ const PadProBanner = () => {
 				</div>
 			</div>
 			<div className="absolute top-2 w-full ">
-				<h1 className="text-white text-2xl min-[1172px]:text-4xl mt-10 font-semibold">
+				<h1 className="text-white text-4xl mt-2 sm:mt-10 font-semibold">
 					iPad Pro
 				</h1>
-				<h4 className="text-white text-xl mt-2 max-w-[350px] mx-auto">
+				<h4 className="text-white sm:text-sm md:text-xl mt-2 max-w-[350px] mx-auto px-2">
 					Apple devices work together so seamlessly, it almost feels like magic.
 				</h4>
 				<div className="flex mt-5 justify-center gap-4">

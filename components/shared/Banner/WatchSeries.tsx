@@ -23,7 +23,9 @@ const WatchSeries = () => {
 					<BsApple />
 					Watch Series 11
 				</h1>
-				<h4 className="text-neutral-800 text-xl mt-2">Supercharged by M5</h4>
+				<h4 className="text-neutral-800 sm:text-sm md:text-xl mt-2 max-w-[350px] mx-auto px-2">
+					Supercharged by M5
+				</h4>
 				<div className="flex mt-5 justify-center gap-4">
 					<Link
 						href={"/watch/watch-series-11"}

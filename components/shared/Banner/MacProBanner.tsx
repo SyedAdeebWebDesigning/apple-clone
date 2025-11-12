@@ -9,7 +9,9 @@ const MacProBanner = () => {
 				<h1 className="text-white  text-4xl mt-2 sm:mt-10 font-semibold">
 					MacBook Pro 14
 				</h1>
-				<h4 className="text-white text-xl mt-2">Supercharged by M5</h4>
+				<h4 className="text-white sm:text-sm md:text-xl mt-2 max-w-[350px] mx-auto px-2">
+					Supercharged by M5
+				</h4>
 				<div className="flex mt-5 justify-center gap-4">
 					<Link
 						href={"/mac/macbook-pro"}

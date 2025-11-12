@@ -28,7 +28,7 @@ export default function RootLayout({
 	return (
 		<Suspense fallback={<Loading />}>
 			<AuthProvider>
-				<html lang="en">
+				<html lang="en" suppressHydrationWarning>
 					<body
 						className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 						{children}

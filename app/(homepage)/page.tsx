@@ -7,34 +7,28 @@ import PhoneAirBanner from "@/components/shared/Banner/PhoneAirBanner";
 import PhoneProBanner from "@/components/shared/Banner/PhoneProBanner";
 import TradeInBanner from "@/components/shared/Banner/TradeInBanner";
 import WatchSeries from "@/components/shared/Banner/WatchSeries";
-import NavBar from "@/components/shared/NavBar";
 
 export default function Home() {
 	return (
-		<>
-			<header className="bg-[#161617cc] relative z-10">
-				<NavBar theme="dark" />
-			</header>
-			<section>
-				<div className="-mt-12">
-					<PhoneProBanner />
-				</div>
-				<div className="mt-4">
-					<PhoneAirBanner />
-				</div>
-				<div className="mt-4">
-					<PadAirBanner />
-				</div>
-				{/* Grid Banners */}
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
-					<AirPodsProBanner />
-					<WatchSeries />
-					<PadProBanner />
-					<MacProBanner />
-					<MacAirBanner />
-					<TradeInBanner />
-				</div>
-			</section>
-		</>
+		<section>
+			<div className="-mt-12">
+				<PhoneProBanner />
+			</div>
+			<div className="mt-4">
+				<PhoneAirBanner />
+			</div>
+			<div className="mt-4">
+				<PadAirBanner />
+			</div>
+			{/* Grid Banners */}
+			<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+				<AirPodsProBanner />
+				<WatchSeries />
+				<PadProBanner />
+				<MacProBanner />
+				<MacAirBanner />
+				<TradeInBanner />
+			</div>
+		</section>
 	);
 }

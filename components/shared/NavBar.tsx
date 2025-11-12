@@ -1,12 +1,11 @@
 import { BsApple, BsBag as ShoppingBag } from "react-icons/bs";
-import { CiLogin } from "react-icons/ci";
 import Link from "next/link";
-import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import MobileNavLinks from "./MobileNavLinks";
 import User from "./User";
 import { cn } from "@/lib/utils";
 import { NavLinks } from "@/lib/links";
+import LoginButton from "./LoginButton";
 
 const NavBar = async ({ theme }: { theme: "light" | "dark" }) => {
 	const { isAuthenticated } = getKindeServerSession();
@@ -16,7 +15,7 @@ const NavBar = async ({ theme }: { theme: "light" | "dark" }) => {
 		<section className="max-w-7xl mx-auto">
 			<div
 				className={cn(
-					"flex space-x-4 items-center justify-between backdrop-blur-xs min-[1194px]:justify-center h-11 left-[50%] -translate-[50%] fixed w-full top-5.5",
+					"flex space-x-4 items-center justify-between backdrop-blur-md min-[1194px]:justify-center h-11 left-[50%] -translate-[50%] fixed w-full top-5.5",
 					theme === "dark"
 						? "bg-[#161617cc] text-white"
 						: "bg-white text-neutral-800"
@@ -55,15 +54,7 @@ const NavBar = async ({ theme }: { theme: "light" | "dark" }) => {
 						<ShoppingBag className="navLink mx-5" name="Shopping Bag" />
 					</Link>
 
-					<div>
-						{auth ? (
-							<User />
-						) : (
-							<LoginLink>
-								<CiLogin className="navLink leading-0 text-xl" />
-							</LoginLink>
-						)}
-					</div>
+					<div>{auth ? <User /> : <LoginButton />}</div>
 
 					<MobileNavLinks theme={theme} />
 				</div>
