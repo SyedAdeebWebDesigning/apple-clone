@@ -11,7 +11,7 @@ import {
 
 const Footer = () => {
 	return (
-		<footer className="bg-neutral-100 py-5">
+		<footer className="bg-[#f5f5f7] py-5">
 			<div className="max-w-5xl mx-auto">
 				<FooterText />
 				<Separator className="my-10 bg-neutral-400" />

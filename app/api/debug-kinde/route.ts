@@ -5,7 +5,7 @@ export async function GET() {
 	const { getUser } = getKindeServerSession();
 	const user = await getUser();
 
-	console.log("🧩 Kinde user object:", user);
+	
 
 	return NextResponse.json(user);
 }

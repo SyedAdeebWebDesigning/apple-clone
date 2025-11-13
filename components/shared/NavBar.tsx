@@ -18,7 +18,7 @@ const NavBar = async ({ theme }: { theme: "light" | "dark" }) => {
 					"flex space-x-4 items-center justify-between backdrop-blur-md min-[1194px]:justify-center h-11 left-[50%] -translate-[50%] fixed w-full top-5.5",
 					theme === "dark"
 						? "bg-[#161617cc] text-white"
-						: "bg-white text-neutral-800"
+						: "bg-[#f5f5f7] text-neutral-800"
 				)}>
 				<Link href={"/"} className="flex items-center py-1 ml-2">
 					<BsApple

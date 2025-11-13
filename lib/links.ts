@@ -112,3 +112,51 @@ export const ContactLinks = [
 		url: "/support/contact",
 	},
 ];
+
+export const CategoryBannerLinks = [
+	{
+		name: "Mac",
+		image: "/assets/banner/category-1.webp",
+		url: "/store/mac",
+	},
+	{
+		name: "iPhone",
+		image: "/assets/banner/category-2.webp",
+		url: "/store/iphone",
+	},
+	{
+		name: "iPad",
+		image: "/assets/banner/category-3.webp",
+		url: "/store/ipad",
+	},
+	{
+		name: "Apple Watch",
+		image: "/assets/banner/category-4.webp",
+		url: "/store/apple-watch",
+	},
+	{
+		name: "AirPods",
+		image: "/assets/banner/category-5.webp",
+		url: "/store/airpods",
+	},
+	{
+		name: "AirTag",
+		image: "/assets/banner/category-6.webp",
+		url: "/store/air-tag",
+	},
+	{
+		name: "Apple TV 4K",
+		image: "/assets/banner/category-7.webp",
+		url: "/store/apple-tv-4k",
+	},
+	{
+		name: "HomePod",
+		image: "/assets/banner/category-8.webp",
+		url: "/store/home-pod",
+	},
+	{
+		name: "Accessories",
+		image: "/assets/banner/category-9.webp",
+		url: "/store/accessories",
+	},
+];
