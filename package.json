@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
-		"build": "mkdir -p build && prisma generate && if [ \"$NODE_ENV\" != \"production\" ]; then next build | tee build-out/out.txt; else next build; fi",
+		"build": "mkdir -p build && prisma generate && if [ \"$NODE_ENV\" != \"production\" ]; then next build | tee build/out.txt; else next build; fi",
 		"start": "next start",
 		"lint": "eslint"
 	},

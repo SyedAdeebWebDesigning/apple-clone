@@ -5,7 +5,7 @@ const page = () => {
 	return (
 		<section className="mt-10">
 			<div className="py-5 text-center">
-				<p className="text-xs sm:text-sm ">
+				<p className="text-xs sm:text-sm mx-2">
 					Get up to 6 months of No Cost EMI Footnote plus up to ₹10000.00
 					instant cashback Footnote on selected products with eligible cards.
 					See offers

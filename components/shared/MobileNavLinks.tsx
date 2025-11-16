@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import {
 	Sheet,
 	SheetContent,
@@ -53,11 +52,9 @@ const MobileNavLinks = ({ theme }: { theme: "light" | "dark" }) => {
 							initial={{ opacity: 0, y: -20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ delay: idx * 0.1 }}>
-							<Link
-								href={link.url}
-								className="text-4xl font-semibold text-left">
+							<a href={link.url} className="text-4xl font-semibold text-left">
 								{link.name}
-							</Link>
+							</a>
 						</motion.li>
 					))}
 				</ul>

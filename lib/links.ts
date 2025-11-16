@@ -152,7 +152,7 @@ export const CategoryBannerLinks = [
 	{
 		name: "HomePod",
 		image: "/assets/banner/category-8.webp",
-		url: "/store/home-pod",
+		url: "/store/homepod",
 	},
 	{
 		name: "Accessories",
