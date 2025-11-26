@@ -1,4 +1,5 @@
 import CategoryBanner from "@/components/shared/Banner/CategoryBanner";
+import GroupBanner from "@/components/shared/GroupBanner";
 import React from "react";
 
 const page = () => {
@@ -12,7 +13,7 @@ const page = () => {
 				</p>
 			</div>
 			<div className="bg-[#f5f5f7]">
-				<div className=" flex flex-col lg:flex-row mx-10 lg:mx-[140px] items-start lg:items-center justify-start lg:justify-between py-20">
+				<div className=" flex flex-col lg:flex-row max-w-360 px-4 mx-auto items-start lg:items-center justify-start lg:justify-between py-20">
 					<h1 className="text-4xl lg:text-7xl font-semibold">Store</h1>
 					<div className="text-xl lg:text-3xl font-semibold text-left lg:text-right mt-1">
 						<h6>
@@ -21,9 +22,13 @@ const page = () => {
 					</div>
 				</div>
 			</div>
-			<div>
-				{/* Category Banner */}
-				<CategoryBanner />
+			<div className="bg-[#f5f5f7]">
+				<div className="max-w-360 mx-auto px-4">
+					{/* Category Banner */}
+					<CategoryBanner />
+					{/* Group Banner */}
+					<GroupBanner />
+				</div>
 			</div>
 		</section>
 	);
