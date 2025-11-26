@@ -19,7 +19,11 @@ const GroupBanner = () => {
 	const scrollByPercent = (direction: "left" | "right") => {
 		if (!scrollRef.current) return;
 		const container = scrollRef.current;
-		const amount = container.clientWidth * 0.2; // 20%
+
+		// 20% default, 30% on < 340px screens
+		const isVerySmallScreen = window.innerWidth <= 402;
+		const percent = isVerySmallScreen ? 1 : 0.2;
+		const amount = container.clientWidth * percent;
 
 		container.scrollBy({
 			left: direction === "left" ? -amount : amount,
@@ -55,7 +59,7 @@ const GroupBanner = () => {
 
 	return (
 		<div className="mt-20 relative">
-			<h1 className="font-semibold">
+			<h1 className="font-semibold lg:px-[140px] mx-3 sm:mx-0">
 				The latest.{" "}
 				<span className="text-neutral-500">
 					Take a look at what&apos;s new right now.
@@ -64,7 +68,7 @@ const GroupBanner = () => {
 
 			<div
 				ref={scrollRef}
-				className="flex items-center justify-start gap-5 overflow-x-auto mt-4 snap-x snap-mandatory scroll-smooth touch-pan-x [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] relative">
+				className="flex items-center justify-start gap-5 overflow-x-auto mt-4 snap-x snap-mandatory scroll-smooth touch-pan-x [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] relative lg:px-[140px] mx-1 sm:mx-0">
 				{GroupBannerLinks.map((link, index) => (
 					<Link
 						href={link.url}

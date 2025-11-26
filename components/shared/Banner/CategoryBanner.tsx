@@ -6,7 +6,7 @@ import React from "react";
 const CategoryBanner = () => {
 	return (
 		<div className=" overflow-scroll">
-			<div className="flex gap-2  overflow-x-auto snap-x snap-mandatory scroll-smooth touch-pan-x [-webkit-overflow-scrolling:touch]  [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+			<div className="flex gap-2  overflow-x-auto snap-x snap-mandatory scroll-smooth touch-pan-x [-webkit-overflow-scrolling:touch]  [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] mx-10 lg:mx-[140px]">
 				{CategoryBannerLinks.map((item) => (
 					<Link
 						key={item.name}
