@@ -19,10 +19,7 @@ const GroupBanner = () => {
 	const scrollByPercent = (direction: "left" | "right") => {
 		if (!scrollRef.current) return;
 		const container = scrollRef.current;
-
-		// 20% default, 30% on < 340px screens
-		const isVerySmallScreen = window.innerWidth <= 402;
-		const percent = isVerySmallScreen ? 1 : 0.2;
+		const percent = 1;
 		const amount = container.clientWidth * percent;
 
 		container.scrollBy({
