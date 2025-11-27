@@ -19,7 +19,7 @@ const GroupBanner = () => {
 	const scrollByPercent = (direction: "left" | "right") => {
 		if (!scrollRef.current) return;
 		const container = scrollRef.current;
-		const percent = 0.7;
+		const percent = 1;
 		const amount = container.clientWidth * percent;
 
 		container.scrollBy({
@@ -65,12 +65,15 @@ const GroupBanner = () => {
 
 			<div
 				ref={scrollRef}
-				className="flex items-center justify-start gap-5 overflow-x-auto mt-4 snap-x snap-mandatory scroll-smooth touch-pan-x [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] relative lg:px-[140px] mx-1 sm:mx-0">
+				className="flex items-center justify-start gap-5 overflow-x-auto mt-4 snap-x snap-mandatory scroll-smooth touch-pan-x [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] relative lg:px-[140px] mx-2 sm:mx-0">
 				{GroupBannerLinks.map((link, index) => (
 					<Link
 						href={link.url}
 						key={index}
-						className="shrink-0 transition-all duration-500 hover:scale-100 scale-99 relative snap-center w-[400px] h-[500px] bg-neutral-200 rounded-xl flex items-center justify-center text-neutral-500 font-medium">
+						className={cn(
+							"shrink-0 transition-all duration-500 hover:scale-100 scale-99 relative snap-center w-[400px] h-[500px] bg-neutral-200 rounded-xl flex items-center justify-center text-neutral-500 font-medium",
+							index === 0 && "ml-5 sm:ml-0"
+						)}>
 						<div
 							className={cn(
 								"absolute top-10 left-10 z-10",
