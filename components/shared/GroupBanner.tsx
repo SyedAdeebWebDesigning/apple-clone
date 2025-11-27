@@ -19,7 +19,7 @@ const GroupBanner = () => {
 	const scrollByPercent = (direction: "left" | "right") => {
 		if (!scrollRef.current) return;
 		const container = scrollRef.current;
-		const percent = 1;
+		const percent = 0.7;
 		const amount = container.clientWidth * percent;
 
 		container.scrollBy({
@@ -56,7 +56,7 @@ const GroupBanner = () => {
 
 	return (
 		<div className="mt-20 relative">
-			<h1 className="font-semibold lg:px-[140px] mx-3 sm:mx-0">
+			<h1 className="font-semibold lg:px-[140px] mx-3 lg:mx-0">
 				The latest.{" "}
 				<span className="text-neutral-500">
 					Take a look at what&apos;s new right now.
