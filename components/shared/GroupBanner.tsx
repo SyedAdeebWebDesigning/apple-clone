@@ -16,14 +16,58 @@ const GroupBanner = () => {
 	const [canScrollRight, setCanScrollRight] = useState(true);
 
 	// Scroll handler
+	// Scroll handler WITH SNAP
 	const scrollByPercent = (direction: "left" | "right") => {
 		if (!scrollRef.current) return;
 		const container = scrollRef.current;
-		const percent = 1;
+
+		// detect screen < 340px => 30% scroll
+		const isVerySmallScreen = window.innerWidth < 340;
+		const percent = isVerySmallScreen ? 0.3 : 1; // use your custom value
 		const amount = container.clientWidth * percent;
 
+		// do the initial scroll
 		container.scrollBy({
 			left: direction === "left" ? -amount : amount,
+			behavior: "smooth",
+		});
+
+		// AFTER scroll animation, snap to nearest card
+		setTimeout(() => {
+			snapToNearest(container);
+		}, 350); // timeout matches smooth animation
+	};
+
+	// Snap to nearest card
+	const snapToNearest = (container: HTMLDivElement) => {
+		const cards = Array.from(container.children) as HTMLElement[];
+		if (!cards.length) return;
+
+		// Find card whose center is closest to scroll center
+		const containerCenter = container.scrollLeft + container.clientWidth / 2;
+		let nearestCard = cards[0];
+		let minDistance = Infinity;
+
+		cards.forEach((card) => {
+			const rect = card.getBoundingClientRect();
+			const cardCenter =
+				rect.left +
+				rect.width / 2 +
+				container.scrollLeft -
+				container.getBoundingClientRect().left;
+			const distance = Math.abs(containerCenter - cardCenter);
+
+			if (distance < minDistance) {
+				minDistance = distance;
+				nearestCard = card;
+			}
+		});
+
+		// Snap that card into view
+		container.scrollTo({
+			left:
+				nearestCard.offsetLeft -
+				(container.clientWidth - nearestCard.clientWidth) / 2,
 			behavior: "smooth",
 		});
 	};
