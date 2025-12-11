@@ -1,5 +1,6 @@
 import CategoryBanner from "@/components/shared/Banner/CategoryBanner";
 import GroupBanner from "@/components/shared/GroupBanner";
+import ProductsBanner from "@/components/shared/ProductsBanner";
 import React from "react";
 
 const page = () => {
@@ -26,6 +27,7 @@ const page = () => {
 				{/* Category Banner */}
 				<CategoryBanner />
 				<GroupBanner />
+				<ProductsBanner />
 			</div>
 		</section>
 	);

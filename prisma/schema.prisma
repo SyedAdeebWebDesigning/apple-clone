@@ -30,3 +30,67 @@ enum Role {
   USER
   ADMIN
 }
+
+model Product {
+  id              String        @id @default(auto()) @map("_id") @db.ObjectId
+  slug            String        @unique
+  name            String
+  description     String
+  price           Int
+  EmiPrice        Int
+  status          ProductStatus @default(OutOfStock)
+  category        Category
+  images          String[]
+  tags            String[]      @default([])
+  stock           Int           @default(0)
+  Variant         Variant[]
+  specification   Specification @relation(fields: [specificationId], references: [id], onDelete: Cascade)
+  specificationId String        @unique @db.ObjectId
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  deletedAt       DateTime?
+}
+
+model Specification {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  chip       String?
+  display    String?
+  battery    String?
+  dimensions String?
+  weight     String?
+  material   String?
+  resolution String?
+  extra      Json?
+  Product    Product?
+}
+
+model Variant {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  productId String  @db.ObjectId
+  color     String?
+  storage   String?
+  size      String?
+  price     Int
+  EmiPrice  Int
+  stock     Int     @default(0)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+enum Category {
+  Mac
+  iPhone
+  iPad
+  Apple_Watch
+  AirPods
+  AirTags
+  Apple_TV_4K
+  HomePod
+  Accessories
+}
+
+enum ProductStatus {
+  InStock
+  LimitedStock
+  OutOfStock
+  ComingSoon
+}
