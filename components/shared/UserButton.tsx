@@ -14,20 +14,21 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
-import { CiBoxList, CiLogout, CiUser } from "react-icons/ci";
 import { Separator } from "../ui/separator";
+import { RxDashboard } from "react-icons/rx";
+import { FiBox, FiLogOut, FiUser } from "react-icons/fi";
 
 const UserButton = ({ user }: { user: User | null }) => {
 	const DropdownLinks = [
 		{
 			label: "Profile",
 			href: "/profile",
-			icon: <CiUser className="text-white group-hover:text-black" />,
+			icon: <FiUser className="text-white group-hover:text-black" />,
 		},
 		{
 			label: "Orders",
 			href: "/orders",
-			icon: <CiBoxList className="text-white group-hover:text-black" />,
+			icon: <FiBox className="text-white group-hover:text-black" />,
 		},
 	];
 	return (
@@ -67,19 +68,29 @@ const UserButton = ({ user }: { user: User | null }) => {
 						key={link.label}
 						href={link.href}
 						className="cursor-pointer group text-neutral-100 hover:text-neutral-200 group-hover:bg-neutral-800">
-						<DropdownMenuItem className="hover:bg-neutral-800">
+						<DropdownMenuItem className="group-hover:bg-neutral-800 cursor-pointer">
 							{link.icon}
 							{link.label}
 						</DropdownMenuItem>
 					</Link>
 				))}
+				{user?.role === "ADMIN" && (
+					<Link
+						href={"/dashboard"}
+						className="cursor-pointer group text-neutral-100 hover:text-neutral-200 group-hover:bg-neutral-800">
+						<DropdownMenuItem className="group-hover:bg-neutral-800 cursor-pointer">
+							<RxDashboard className="text-white group-hover:text-black" />
+							Admin Dashboard
+						</DropdownMenuItem>
+					</Link>
+				)}
 				<Separator className="my-1 bg-neutral-800" />
 
 				<LogoutLink
 					className="text-red-500"
 					postLogoutRedirectURL={process.env.NEXT_PUBLIC_KINDE_SITE_URL || "/"}>
 					<DropdownMenuItem className="cursor-pointer">
-						<CiLogout className="text-red-500" />
+						<FiLogOut className="text-red-500" />
 						Logout
 					</DropdownMenuItem>
 				</LogoutLink>

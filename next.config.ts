@@ -1,12 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-	experimental: {
-		cacheComponents: true,
-	},
+	cacheComponents: true,
 
 	images: {
-		domains: ["lh3.googleusercontent.com"],
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "lh3.googleusercontent.com",
+				pathname: "/**",
+			},
+		],
 	},
 	/* config options here */
 };

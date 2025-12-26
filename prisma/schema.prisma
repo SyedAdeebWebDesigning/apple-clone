@@ -65,27 +65,27 @@ model Specification {
 }
 
 model Variant {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  productId String  @db.ObjectId
-  color     String?
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  productId String   @db.ObjectId
+  color     String[]
   storage   String?
   size      String?
   price     Int
   EmiPrice  Int
-  stock     Int     @default(0)
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  stock     Int      @default(0)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
 enum Category {
-  Mac
-  iPhone
-  iPad
-  Apple_Watch
-  AirPods
-  AirTags
-  Apple_TV_4K
-  HomePod
-  Accessories
+  mac
+  iphone
+  ipad
+  watch
+  airpods
+  airtags
+  apple_tv_4k
+  homepod
+  accessories
 }
 
 enum ProductStatus {
